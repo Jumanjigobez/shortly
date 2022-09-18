@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Shortly | Shorten your URL here</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="style/style.css">
+</head>
+<body>
+  <main>
+    <header id="header">
+      <div class="logo">
+        <img src="images/logo.svg">
+      </div>
+
+      <div class="menu_part">
+        
+             <div class="menu_btn">
+              <p onclick="openMenu()"><i class="fa fa-bars"></i></p>
+            </div>
+
+            <div class="menu_box">
+              <ul id="menu">
+                <li>Features</li>
+                <li>Pricing</li>
+               <li> Resources</li>
+              </ul>
+
+               <div class="account">
+                <button class="login_btn">Login</button>
+                <button class="signup_btn btn">Signup</button>
+              </div>
+            </div>
+
+      </div>
+     
+    </header>
+
+
+    <section id="section_1">
+      <div class="hero">
+        <div class="part_1">
+          <h1>More than just shorter links</h1>
+          <p>Build your brand’s recognition and get detailed insights on how your links are performing.</p>
+          <button class="btn hero_btn">Get Started</button>
+        </div>
+
+        <div class="part_2">
+          <img src="images/illustration-working.svg" alt="illustration working image">
+        </div>
+      </div>
+
+      <div class="url_part">
+        <input type="text" name="url" id="url" placeholder="Shorten a link here...">
+        <small class="error_text">Please add a link</small>
+        <button class="btn shorten_btn" onclick="shortenUrl()">Shorten It!</button>
+      </div>
+    </section>
+
+    <section id="section_2">
+      <div id="result_part">
+        <!-----Shortened url will be displayed here by javascript---->
+      </div>
+      <div class="title">
+        <h2>Advanced Statistics</h2>
+        <p>Track how your links are performing across the web with our advanced statistics dashboard.</p>
+      </div>
+
+      <div class="card_part">
+        <div class="card card_1">
+          <div class="image_part">
+            <img src="images/icon-brand-recognition.svg" alt="icon of brand recognition">
+          </div>
+          <h3>Brand Recognition</h3>
+          <p>Boost your brand recognition with each click. Generic links don’t mean a thing. Branded links help instil confidence in your content.</p>
+        </div>
+
+        <div class="card card_2">
+          <div class="image_part">
+            <img src="images/icon-detailed-records.svg" alt="icon of detailed record">
+          </div>
+          <h3>Detailed Records</h3>
+          <p>Gain insights into who is clicking your links. Knowing when and where people engage with your content helps inform better decisions.</p>
+        </div>
+
+        <div class="card card_3">
+          <div class="image_part">
+            <img src="images/icon-fully-customizable.svg" alt="icon of customizable representation">
+          </div>
+          <h3>Fully Customizable</h3>
+          <p>Improve brand awareness and content discoverability through customizable links, supercharging audience engagement.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="section_3">
+      <h4>Boost your links today</h4>
+      <button class="btn boost_btn">Get Started</button>
+    </section>
+
+    <footer id="footer">
+      <div class="contents">
+         <div class="logo">
+           <img src="images/logo2.svg" alt="logo image">
+         </div>
+
+         <div class="menu_1">
+           <h4>Features</h4>
+           <ul>
+              <li>Link Shortening</li>
+              <li>Branded Links</li>
+              <li>Analytics</li>
+           </ul>
+         </div>
+
+         <div class="menu_2">
+           <h4>Resources</h4>
+           <ul>
+              <li>Blog</li>
+              <li>Developers</li>
+              <li>Support</li>
+           </ul>
+         </div>
+
+          <div class="menu_2">
+           <h4>Company</h4>
+           <ul>
+              <li>About</li>
+              <li>Our Team</li>
+              <li>Careers</li>
+              <li>Contact</li>
+           </ul>
+         </div>
+
+         <div class="social">
+           <ul id="social">
+             <li><img src="images/icon-facebook.svg" alt="facebook icon"></li>
+             <li><img src="images/icon-twitter.svg" alt="twitter icon"></li>
+             <li><img src="images/icon-pinterest.svg" alt="pinterest icon"></li>
+             <li><img src="images/icon-instagram.svg" alt="instagram icon"></li>
+           </ul>
+         </div>
+  
+      </div>
+
+      <div class="coder">
+        <small>Coded by <a href="https://www.jumanjigobez.github.io/personal_portfolio" target="_blank">Jumanji</a></small>
+      </div>
+     
+    </footer>
+
+  </main>
+  <script src="script/script.js"></script>
+</body>
+</html>

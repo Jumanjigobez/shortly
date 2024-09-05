@@ -1,17 +1,17 @@
 //function to get elements
 
-elem = (x) =>{
-	return document.querySelector(x);
-}
+elem = (x) => {
+  return document.querySelector(x);
+};
 
 //Menu function
 var menu_btn = elem(".menu_btn");
 var menu = elem("#menu");
 var styleElem = document.head.appendChild(document.createElement("style"));
 
-openMenu = () =>{
-	menu_btn.innerHTML = `<p onclick="closeMenu()"><i class="fa fa-bars"></i></p>`;
-	styleElem.innerHTML = `
+const openMenu = () => {
+  menu_btn.innerHTML = `<p onclick="closeMenu()"><i class="fa fa-times"></i></p>`;
+  styleElem.innerHTML = `
 		@media (max-width: 800px){
 				.menu_box{
 					display: block;
@@ -45,11 +45,11 @@ openMenu = () =>{
 		
 
 			`;
-}
+};
 
-closeMenu = () =>{
-	menu_btn.innerHTML = `<p onclick="openMenu()"><i class="fa fa-bars"></i></p>`;
-	styleElem.innerHTML = `
+const closeMenu = () => {
+  menu_btn.innerHTML = `<p onclick="openMenu()"><i class="fa fa-bars"></i></p>`;
+  styleElem.innerHTML = `
 		@media (max-width: 800px){
 			.menu_box{
 				display: none;
@@ -84,8 +84,7 @@ closeMenu = () =>{
 		}
 	
 			`;
-}
-
+};
 
 //Shortening function
 
@@ -93,11 +92,11 @@ var result_part = elem("#result_part");
 var count = 0; //To give each copy button a value so that it can be clickable itself;
 var results = {};
 
-shortenUrl = () =>{
-	let url_input = elem("#url");
+shortenUrl = () => {
+  let url_input = elem("#url");
 
-	if(url_input.value!=""){
-		styleElem.innerHTML = `
+  if (url_input.value != "") {
+    styleElem.innerHTML = `
 				input{
 					border: none;
 				}
@@ -131,49 +130,53 @@ shortenUrl = () =>{
 				}
 
 				`;
-		
-		//Fetching the api results
-		var api = `https://api.shrtco.de/v2/shorten?url=${url_input.value}`;
 
-		fetch(api).then(res => res.json())
-		.then(data => {
-			if(data.ok == true){
-				result_part.innerHTML += `
+    //Fetching the api results
+    const apiToken =
+      "OQZuhZlIQf0HJRMZNFlsCcFLemMgNnls8WcZvcXANbf3DaIyOeYwXXZ4JvGn";
 
-					<div class="results">
-						<div>
-							<p>${url_input.value}</p>
-						</div>
+    fetch(`https://api.tinyurl.com/create?api_token=${apiToken}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${apiToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        url: url_input.value,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        if (data.code === 0) {
+          result_part.innerHTML += `
 
-						<div>
-							<p class="shortened_url">${data.result.full_short_link3}</p>
-							<button class="btn copy_btn" onclick="copy(${count++})">Copy</button>
-						</div>
-					</div>
+        		<div class="results">
+        			<div>
+        				<p style="width: 200px;text-overflow: ellipsis;overflow: hidden;">${url_input.value}</p>
+        			</div>
 
-				`;
+        			<div>
+        				<p class="shortened_url">${data.data.tiny_url}</p>
+        				<button class="btn copy_btn" onclick="copy(${count++})">Copy</button>
+        			</div>
+        		</div>
 
-			}
-			else{
-				if(data.error_code == 2){
-					result_part.innerHTML += `
-					
-							<div class="results" style="background-color: var(--Red)">
-								<p style="color: black; text-align: center;">Invalid URL, Please try again!</p>
-							</div>
-						`;
-				}
-			}
-			
-			
-		});
+        	`;
+        } else {
+          if (data.code == 5) {
+            result_part.innerHTML += `
 
-
-
-		
-	}
-	else{
-		styleElem.innerHTML = `
+        				<div class="results" style="background-color: var(--Red)">
+        					<p style="color: black; text-align: center;">Invalid URL, Please try again!</p>
+        				</div>
+        			`;
+          }
+        }
+      });
+  } else {
+    styleElem.innerHTML = `
 				input{
 					border: 2px solid var(--Red);
 				}
@@ -206,20 +209,16 @@ shortenUrl = () =>{
 					}
 				}
 				`;
-		
-
-	}
-	
-}
+  }
+};
 
 //Copy function to each button clicked
-copy = (i) =>{
-	let copy_btn = document.querySelectorAll(".copy_btn");
-	let shortened_url = document.querySelectorAll(".shortened_url");
+const copy = (i) => {
+  let copy_btn = document.querySelectorAll(".copy_btn");
+  let shortened_url = document.querySelectorAll(".shortened_url");
 
-	navigator.clipboard.writeText(shortened_url[i].textContent);
+  navigator.clipboard.writeText(shortened_url[i].textContent);
 
-	copy_btn[i].innerText = "Copied!";
-	copy_btn[i].style.background = "var(--Dark-Violet)";
-	
-}
+  copy_btn[i].innerText = "Copied!";
+  copy_btn[i].style.background = "var(--Dark-Violet)";
+};
